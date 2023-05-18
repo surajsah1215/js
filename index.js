@@ -13,3 +13,12 @@ const ll = document.getElementsByTagName('li');
 for(let i=0; i<ll.length; i++){
     ll[i].style.fontWeight = '900';
 }
+
+var chng = document.querySelectorAll('li');
+chng[1].style.backgroundColor = 'green';
+chng[2].style.opacity = '0';
+
+var odd = document.querySelectorAll('li:nth-child(odd)');
+for(let i=0; i<odd.length; i++){
+    odd[i].style.backgroundColor = 'green';
+}
