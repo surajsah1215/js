@@ -8,6 +8,8 @@ item.style.color = 'green';
 const li = document.getElementsByClassName('list-group-item');
 li[2].style.backgroundColor = 'green';
 
-for(let i=0; i<li.length; i++){
-    li[i].style.fontWeight = '900';
+const ll = document.getElementsByTagName('li');
+
+for(let i=0; i<ll.length; i++){
+    ll[i].style.fontWeight = '900';
 }
