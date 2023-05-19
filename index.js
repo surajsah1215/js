@@ -17,12 +17,12 @@ const li = document.getElementsByClassName('list-group-item');
 
 for(let i=0; i<edittb.length; i++){
     const editBtn = document.createElement('button');
-
-    li[i].appendChild(editBtn);
     editBtn.className = 'float-right';
     editBtn.classList.add('edit');
     editBtn.innerText = 'Edit';
-    items.appendChild(li[3]);
+
+    li[i].appendChild(editBtn);
+    
 
    
 }

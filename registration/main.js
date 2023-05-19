@@ -6,9 +6,19 @@ const button = document.querySelector('.btn');
 
 button.addEventListener('click',submit);
 
+// let arr = [];
 function submit(e){
     e.preventDefault();
-    console.log(namee.value);
-    localStorage.setItem('name',namee.value);
-    localStorage.setItem('email',email.value);
+    const obj = {
+        namee :namee.value,
+        email: email.value
+    };
+
+    let obj_serialized = JSON.stringify(obj);
+    // arr.push(obj_serialized)
+
+    localStorage.setItem('data',obj_serialized);
+    
+   
+
 }
