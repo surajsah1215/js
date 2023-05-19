@@ -17,7 +17,7 @@ function submit(e){
     let obj_serialized = JSON.stringify(obj);
     // arr.push(obj_serialized)
 
-    localStorage.setItem('data',obj_serialized);
+    localStorage.setItem(email.value,obj_serialized);
     
    
 
