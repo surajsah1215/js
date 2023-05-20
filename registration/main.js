@@ -6,7 +6,6 @@ const button = document.querySelector('.btn');
 
 button.addEventListener('click',submit);
 
-// let arr = [];
 function submit(e){
     e.preventDefault();
     const obj = {
@@ -15,9 +14,30 @@ function submit(e){
     };
 
     let obj_serialized = JSON.stringify(obj);
-    // arr.push(obj_serialized)
 
     localStorage.setItem(email.value,obj_serialized);
+
+    const section = document.querySelector('.container');
+    const ul = document.createElement('ul');
+    const btn = document.createElement('button');
+    btn.className = 'float-right';
+    btn.innerText = 'Delete';
+
+    section.appendChild(ul);
+
+    ul.appendChild(document.createTextNode(obj.namee));
+    ul.appendChild(document.createTextNode(" - "));
+    ul.appendChild(document.createTextNode(obj.email));
+
+    ul.appendChild(btn);
+
+    btn.addEventListener('click',clear);
+
+    function clear(e){
+        ul.remove();
+        localStorage.removeItem(email.value);
+    }
+
     
    
 
