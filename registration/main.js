@@ -19,9 +19,14 @@ function submit(e){
 
     const section = document.querySelector('.container');
     const ul = document.createElement('ul');
+   
     const btn = document.createElement('button');
     btn.className = 'float-right';
     btn.innerText = 'Delete';
+
+    const edit = document.createElement('button');
+    edit.className = 'float-right';
+    edit.innerText = 'Edit';
 
     section.appendChild(ul);
 
@@ -30,12 +35,21 @@ function submit(e){
     ul.appendChild(document.createTextNode(obj.email));
 
     ul.appendChild(btn);
+    ul.appendChild(edit);
 
     btn.addEventListener('click',clear);
+    edit.addEventListener('click',editclick);
 
     function clear(e){
         ul.remove();
-        localStorage.removeItem(email.value);
+        localStorage.removeItem(obj.email);
+    }
+
+    function editclick(e){
+        ul.remove();
+        localStorage.removeItem(obj.email);
+        document.getElementById('name').value = ul.childNodes[0].textContent
+        document.getElementById('email').value = ul.childNodes[2].textContent
     }
 
     
