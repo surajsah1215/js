@@ -1,73 +1,42 @@
+const post = []
+function updateLastActivityTime(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(() => {
+      const time  = new Date();
+      resolve(time);
+    }, 1000);
+  })
+}
+function createPost(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      const user = {title:'post'}
+      post.push(user);
+      resolve(user)
+    },1000)
+  })
+}
 
-class User{
-    static count = 0;
-    constructor(username, email, password) {
-      this.username = username;
-      this.email = email;
-      this.password = password;
-      User.count++
+function deleteUser(){
+  return new Promise((resolve,reject)=>{
+    if(post.length>0){
+      post.pop();
+      resolve()
     }
-    printNumberOfUsers(){
-        console.log("currentnumberofusers =", User.count)
-    }
-    
-
+  })
 }
 
-class Member extends User {
-  constructor(username, email, password ) {
-      
-    super(username,email,password);     // complete the super function only. Do not make any other changes
-    
-    this.membershipactivetilldate = new Date(2023, 14, 3)//assume user has joined ur platform on 3rd March
-}
-  
-    //Based on the package bought, increase the membershipactivetilldate
-    //Monthly membership increases the va1idity by 1 month
-    //Yearly membership increases the va1idity by 1 year
-  purchaseMembership(membershippackagename) {
-      
-    //   Complete this function
-      if(membershippackagename == 'MONTHLYPACKAGE'){
-        this.membershipactivetilldate.setMonth(this.membershipactivetilldate.getMonth()+1);
-      }
-      else{
-        this.membershipactivetilldate.setFullYear(this.membershipactivetilldate.getFullYear()+1);
-      }
-      
-  }
-
-  subscriptionActiveTill() {
-    console.log(
-      this.username +
-        " is subscribed to " +
-        this.package +
-        " uptill " +
-        this.membershipactivetilldate.toDateString()
-    );
-  }
-
+function printpost(){
+  post.forEach((post)=>{
+    console.log(post.title);
+  })
 }
 
-function createNewStudents(username, email, password, membershippackagename){
-    const mike = new Member(username, email, password);  
-    mike.purchaseMembership(membershippackagename);
-    mike.subscriptionActiveTill();
-
-}
-
-async function readInput() {
-        let inputString = '';
-        var output=[];
-        process.stdin.on('data', inputStdin => {
-            inputString += inputStdin;
-            const inputArr = inputString.split(/(?:\r\n|\r|\n)/g)
-            const argumentsArr = inputArr[0].split(',');
-            createNewStudents(argumentsArr[0], argumentsArr[1], argumentsArr[2], argumentsArr[3] )
-            process.exit();
-            
-        })
-        
-
-}
-readInput();
+// Promise.all(updateLastActivityTime,createPost);
+createPost().then((mess)=>{
+  console.log(mess.title);
+  updateLastActivityTime().then((mess)=>{
+    console.log(mess);
+    printpost();
+  });
+})
