@@ -15,7 +15,15 @@ function submit(e){
 
     let obj_serialized = JSON.stringify(obj);
 
-    localStorage.setItem(email.value,obj_serialized);
+    axios.post("https://crudcrud.com/api/c1535eedf7c34f87bebd7aafc4e9575d/adddata",obj)
+    .then(respone => {
+        console.log(respone.data)        
+    }).catch((err) => {
+        document.body.innerHTML= document.body.innerHTML + "<h4>ERROR</h4>"
+        console.log(err);
+    });
+
+    // localStorage.setItem(email.value,obj_serialized);
 
     const section = document.querySelector('.container');
     const ul = document.createElement('ul');
