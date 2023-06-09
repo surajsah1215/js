@@ -6,6 +6,22 @@ const button = document.querySelector('.btn');
 
 button.addEventListener('click',submit);
 
+window.addEventListener("DOMContentLoaded",()=>{
+    axios.get("https://crudcrud.com/api/c1535eedf7c34f87bebd7aafc4e9575d/adddata")
+.then((respone)=> {
+    console.log(respone.data);
+    for(var i=0; i<respone.data.length; i++){
+        showUserOnScreen(respone.data[i]);
+    }
+}).catch(err => console.log(err));
+
+})
+
+function showUserOnScreen(user){
+    document.getElementById('name').value = '';
+    document.getElementById('email').value = '';
+}
+
 function submit(e){
     e.preventDefault();
     const obj = {
@@ -64,3 +80,4 @@ function submit(e){
    
 
 }
+
