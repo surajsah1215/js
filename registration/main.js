@@ -7,7 +7,7 @@ const button = document.querySelector('.btn');
 button.addEventListener('click',submit);
 
 window.addEventListener("DOMContentLoaded",()=>{
-    axios.get("https://crudcrud.com/api/c1535eedf7c34f87bebd7aafc4e9575d/adddata")
+    axios.get("https://crudcrud.com/api/6e4bba46629e4ff99fd5b227c26f2856/adddata")
 .then((respone)=> {
     console.log(respone.data);
     for(var i=0; i<respone.data.length; i++){
@@ -30,15 +30,16 @@ function submit(e){
     };
 
     let obj_serialized = JSON.stringify(obj);
-
-    axios.post("https://crudcrud.com/api/c1535eedf7c34f87bebd7aafc4e9575d/adddata",obj)
+    let id = null;
+    axios.post("https://crudcrud.com/api/6e4bba46629e4ff99fd5b227c26f2856/adddata",obj)
     .then(respone => {
-        console.log(respone.data)        
+        id = respone.data._id
     }).catch((err) => {
         document.body.innerHTML= document.body.innerHTML + "<h4>ERROR</h4>"
         console.log(err);
     });
 
+    
     // localStorage.setItem(email.value,obj_serialized);
 
     const section = document.querySelector('.container');
@@ -65,8 +66,14 @@ function submit(e){
     edit.addEventListener('click',editclick);
 
     function clear(e){
-        ul.remove();
-        localStorage.removeItem(obj.email);
+        // ul.remove();
+        // localStorage.removeItem(obj.email);
+     console.log(id);
+        axios.delete(`https://crudcrud.com/api/6e4bba46629e4ff99fd5b227c26f2856/adddata/${id}`)
+        .then(()=> {
+            ul.remove();
+        })
+        .catch(err => console.log(err));
     }
 
     function editclick(e){
