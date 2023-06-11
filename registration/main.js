@@ -68,7 +68,6 @@ function submit(e){
     function clear(e){
         // ul.remove();
         // localStorage.removeItem(obj.email);
-     console.log(id);
         axios.delete(`https://crudcrud.com/api/6e4bba46629e4ff99fd5b227c26f2856/adddata/${id}`)
         .then(()=> {
             ul.remove();
@@ -77,10 +76,17 @@ function submit(e){
     }
 
     function editclick(e){
-        ul.remove();
-        localStorage.removeItem(obj.email);
-        document.getElementById('name').value = ul.childNodes[0].textContent
-        document.getElementById('email').value = ul.childNodes[2].textContent
+
+        axios.put(`https://crudcrud.com/api/6e4bba46629e4ff99fd5b227c26f2856/adddata/${id}`,obj)
+        .then((respone)=>{
+            ul.remove();
+            document.getElementById('name').value = obj.namee
+            document.getElementById('email').value = obj.email
+        }).catch(err=> console.log(err));
+
+       
+        // localStorage.removeItem(obj.email);
+        
     }
 
     
