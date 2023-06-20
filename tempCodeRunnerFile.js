@@ -1,1 +1,1 @@
-    arr[i] = str[i]
+console.log('b');
