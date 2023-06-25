@@ -1,34 +1,32 @@
-const db  = require('../util/database')
-const getProductsFromFile = cb => {
- 
-};
+// const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 
-module.exports = class Product {
-  constructor(id, title, imageUrl, description, price) {
-    this.id = id;
-    this.title = title;
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.price = price;
+// const sequelize = require('../util/database');
+
+const sequelize = new Sequelize('node-complete','root','123456',{
+  dialect : 'mysql',
+  host : 'localhost'
+});
+
+
+const Product = sequelize.define('product',{
+  id:{
+    type : DataTypes.INTEGER,
+    autoIncrement : true,
+    allownull : true,
+    primaryKey: true
+  },
+  title : DataTypes.STRING,
+  price : {
+    type: DataTypes.DOUBLE,
+    allownull:false
+  },
+  imageUrl:{
+    type:DataTypes.STRING,
+    allownull:false
   }
 
-  save() {
-   return db.execute('INSERT INTO products (title,price,imageUrl,description) VALUES(?,?,?,?)',
-   [this.title,this.price,this.imageUrl,this.description]
-   );
-  }
+});
 
-  static fetchAll(cb) {
-   return db.execute('SELECT * FROM  products');
-  }
-
-  static findById(id) {
-   return db.execute('SELECT *  FROM products WHERE products.id=?',[id]);
-  }
-
-  static deleteById(id){
-    return db.execute('DELETE FROM products WHERE products.id=?',[id]);
-
-  }
-
-};
+module.exports = sequelize;
+module.exports = Product;
