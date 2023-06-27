@@ -24,7 +24,8 @@ const Product = sequelize.define('product',{
   imageUrl:{
     type:DataTypes.STRING,
     allownull:false
-  }
+  },
+  description:DataTypes.STRING
 
 });
 
