@@ -2,20 +2,21 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 // const sequelize = require('../util/database');
-
 const sequelize = new Sequelize('node-complete','root','123456',{
-  dialect : 'mysql',
-  host : 'localhost'
-});
+    dialect : 'mysql',
+    host : 'localhost'
+  });
 
-const Cart = sequelize.define('cart',{
+
+const CartItem = sequelize.define('cartItem',{
   id:{
     type : DataTypes.INTEGER,
     autoIncrement : true,
     allownull : false,
     primaryKey: true
-  }
+  },
+  quantitiy : DataTypes.INTEGER
 
 });
 
-module.exports = Cart;
+module.exports = CartItem;
